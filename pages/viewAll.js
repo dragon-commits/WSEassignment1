@@ -86,7 +86,7 @@ export default function ViewAll({data, courseid}) {
 
           <Table.Cell>{item.id} </Table.Cell>
           <Table.Cell>
-            <Input id={`grade_`+item.id}   labelPlaceholder={`grade_`+item.id}/>
+            <Input id={`grade_`+item.id}   labelPlaceholder={`Enter Grade `+item.id}/>
             <Button type="button" onClick={(save) => saveData(item.id, courseid)}  size="xs">Save</Button>
           </Table.Cell>
           <Table.Cell>{item.firstname} </Table.Cell>

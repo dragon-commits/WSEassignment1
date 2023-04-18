@@ -21,7 +21,11 @@ connection.query(
 "SELECT * FROM students where enrolledin = '"+currentID+"';",
 function(err, results, fields) {
 
-    //return back the records#
+
+    console.log("send back the results");
+    console.log(results);
+
+    //return back the records
     res.status(200).json(results);
  
 }
