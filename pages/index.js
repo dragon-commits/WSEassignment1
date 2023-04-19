@@ -1,22 +1,27 @@
 import { NextUIProvider } from '@nextui-org/react';
 import {useRouter} from 'next/router'
-import { Input } from "@nextui-org/react";
+import { Input, useInput } from "@nextui-org/react";
 import { Container, Card, Row, Text, Col, Spacer } from "@nextui-org/react";
 import { Button, Grid } from "@nextui-org/react";
 import { Link } from "@nextui-org/react";
 import { createTheme} from "@nextui-org/react"
+import { Image } from '@nextui-org/react';
 
 export default function Home({data}) {
-
+  const router = useRouter()
+  
+  // Handle the submit for the form
   async function handleSubmt(event) {
+  
+    
        alert("The form was submitted");
        event.preventDefault();
 
        // grab the variables from the form.
        const username = document.querySelector('#username').value
-       console.log("username is " + username);
-
        const pass = document.querySelector('#password').value
+
+       console.log("username is " + username);
        console.log("password is " + pass);
 
         // Get data from the form.
@@ -55,7 +60,7 @@ export default function Home({data}) {
         
         
         // redirect based on the result
-        router.push("/listAllCourses");
+        router.push("/adminNav");
   }
 
 /**************** CUSTOM THEME ********************/
@@ -64,16 +69,16 @@ const myCustomTheme = createTheme({
   theme: {
     colors: {
       // brand colors
-      primaryLight: '$green200',
-      primaryLightHover: '$green300',
-      primaryLightActive: '$green400',
-      primaryLightContrast: '$green600',
-      primary: '#4ADE7B',
-      primaryBorder: '$green500',
-      primaryBorderHover: '$green600',
-      primarySolidHover: '$green700',
+      primaryLight: '$33ACFF',
+      primaryLightHover: '$33ACFF',
+      primaryLightActive: '$33ACFF',
+      primaryLightContrast: '$33ACFF',
+      primary: '#33ACFF',
+      primaryBorder: '$33ACFF',
+      primaryBorderHover: '$33ACFF',
+      primarySolidHover: '$33ACFF',
       primarySolidContrast: '$white',
-      primaryShadow: '$green500',
+      primaryShadow: '$33ACFF',
 
       gradient: 'linear-gradient(112deg, $blue100 -25%, $pink500 -10%, $purple500 80%)',
       link: '#5E1DAD',
@@ -90,8 +95,6 @@ const myCustomTheme = createTheme({
 
 /**************** END CUSTOM THEME ********************/
 
-  const router = useRouter()
-
   const MockItem = ({ text }) => {
     return (
       <Card css={{ h: "$24", $$cardColor: '$colors$primary' }}>
@@ -107,45 +110,94 @@ const myCustomTheme = createTheme({
   return (
 
 <NextUIProvider theme={myCustomTheme}>
+
+{/*Logo to appear at the top in the center */}
+<Image
+        width={320}
+        height={180}
+        src="https://dynamic.brandcrowd.com/asset/logo/cb52f9e5-32ed-4f83-b20a-3aa171749462/logo-search-grid-1x?logoTemplateVersion=1&v=638095294425300000"
+        alt="Default Image"
+        objectFit="cover"
+        />
+
+{/* ########## Top card #######*/}
+
+<Card css={{ width: '100%', h: "$30", $$cardColor: '$colors$secondary' }}>
+    <Card.Body>
+        <Row justify="center" align="center" >    
+            <Text h1 size={30} color="white" css={{ mt: 0 }}>
+                COLLEGE MANAGEMENT SYSTEM
+            </Text>
+        </Row>
+    </Card.Body>
+</Card>
+
+{/* ########## End Top card #######*/}
+
+{/* ########## Left card #######*/}
     <Grid.Container gap={2} justify="center">
       <Grid xs={4}>
-        <MockItem text="1 of 3" />
       </Grid>
       <Grid xs={4}>
 
+{/* ########## Middle card #######*/}
       <Card css={{ h: "$240", $$cardColor: '$colors$primary' }}>
         <Card.Body>
-          <Text h6 size={15} color="white" css={{ mt: 0 }}>
-
-            Login to system
+          <Text h1 size={30} color="white" css={{ mt: 0 }} align="center">
+            LOGIN TO SYSTEM
             <br></br>
-
+            <Spacer y={2}/>
 
             <form onSubmit={handleSubmt}>
-            <Input id="username" clearable bordered labelPlaceholder="username" initialValue=''/>
-            <Spacer y={0.5}/>
+            <Input id="username"
+             shadow={false} 
+             status="secondary" 
+             clearable 
+             bordered 
+             labelPlaceholder="Username" 
+             initialValue=""
+             />
+            <Spacer y={2}/>
 
-            <Input id="password" clearable bordered labelPlaceholder="password" initialValue='' />
-            <Spacer y={0.5}/>
+            <Input.Password id="password"
+             shadow={false} 
+             status="secondary"
+             type="password" 
+             clearable 
+             bordered 
+             labelPlaceholder="Password" 
+             initialValue=""
+            />
+            <Spacer y={2}/>
 
-            <Button type="submit" color="secondary" auto>Login</Button>
-            <Spacer y={0.5}/>
+            <Row justify="center" align="center">
+            <Button type="submit" color="secondary" >LOGIN</Button>
+            </Row>
+            <Spacer y={2}/>
             </form>
-
 
           </Text>
         </Card.Body>
       </Card>
       </Grid>
 
-      <Grid xs={4}>
-        <MockItem text="3 of 3" />
+{/* ########## Right card #######*/}
+<Grid xs={4}>
       </Grid>
     </Grid.Container>
+    <Spacer y={0.5}/>
+
+    {/* ########## Bottom card #######*/}
+    <Card css={{ width: '100%', h: "$26", $$cardColor: '$colors$secondary' }}>
+            <Card.Body>
+            <br></br>
+              <Text h6 size={14} color="white" css={{ mt: 0 }} align="center">
+              Designed by ___________________ © 2023
+              </Text>
+            </Card.Body>
+          </Card>
 
     </NextUIProvider>
     
   )
 }
-
-

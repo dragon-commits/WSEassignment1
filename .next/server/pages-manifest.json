@@ -2,6 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/api/saveChat": "pages/api/saveChat.js",
-  "/chat": "pages/chat.js"
+  "/viewAll": "pages/viewAll.js",
+  "/listAllCourses": "pages/listAllCourses.js",
+  "/api/getEnrolledStudents": "pages/api/getEnrolledStudents.js"
 }
