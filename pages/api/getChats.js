@@ -6,7 +6,7 @@ export default function getChats(req, res) {
 
 
 // Replace the uri string with your MongoDB deployment's connection string.
-const uri = "mongodb://root:example@0.0.0.0:6666";
+const uri = "mongodb://root:example@localhost:6666";
 
 // create mongo connection client
 const client = new MongoClient(uri);

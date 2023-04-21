@@ -25,15 +25,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/listAllCourses": [
+    "/adminNav": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/listAllCourses.js"
-    ],
-    "/viewAll": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/viewAll.js"
+      "static/chunks/pages/adminNav.js"
     ]
   },
   "ampFirstPages": []

@@ -6,10 +6,13 @@ import { Spacer } from '@nextui-org/react';
 import { Input } from '@nextui-org/react';
 import { Button } from '@nextui-org/react';
 import { Textarea } from '@nextui-org/react';
+import { useRouter } from 'next/router'
 
 
 
-export default function Chat() {
+export default function chat() {
+
+  const router = useRouter()
 
   async function handleSubmt(event) {
 
@@ -23,8 +26,6 @@ export default function Chat() {
 
     //Send the data to the server in JSON format.
     const JSONdata = JSON.stringify(data)
-
-    alert(JSONdata);
 
     // API endpoint where we send form data.
     const endpoint = '/api/saveChat'
@@ -46,13 +47,12 @@ export default function Chat() {
    
         // Get the response data from server as JSON.
         // If server returns the name submitted, that means the form works.
-        const result = await response.json()
-        alert("respone from server " + result);
+        //const result = await response.json()
+        //alert("respone from server " + result);
 
         
   
   }
-
 
 
 /**************** CUSTOM THEME ********************/

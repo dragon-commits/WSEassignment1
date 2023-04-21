@@ -73,6 +73,47 @@ export default function listAllCourses({data, courses}) {
       // }
 }
 
+  // Handle the submit for the form
+  async function deleteCourse(courseid) {
+       
+    alert("Are you sure you want to delete course " +courseid+ "?");
+    
+     // Get data from the form.
+     const data = {
+       courseid: courseid,
+     }
+ 
+     // Send the data to the server in JSON format.
+     const JSONdata = JSON.stringify(data)
+ 
+     // API endpoint where we send form data.
+     const endpoint = '/api/deleteCourse'
+
+     // Form the request for sending data to the server.
+     const options = {
+       // The method is POST because we are sending data.
+       method: 'POST',
+       // Tell the server we're sending JSON.
+       headers: {
+         'Content-Type': 'application/json',
+       },
+       // Body of the request is the JSON data we created above.
+       body: JSONdata,
+     }        
+ 
+     // Send the form data to our forms API on Vercel and get a response.
+     const response = await fetch(endpoint, options)
+
+     // Get the response data from server as JSON.
+     // If server returns the name submitted, that means the form works.
+     const result = await response.json()
+
+     // redirect based on the result
+     router.push("/listAllCourses");
+     alert("Course Deleted!");
+      // }
+}
+
 /**************** CUSTOM THEME ********************/
 const myCustomTheme = createTheme({
   type: "light", // it could be "light" or "dark"
@@ -153,12 +194,14 @@ const myCustomTheme = createTheme({
     <Table.Column>Description</Table.Column>
     <Table.Column>NFQ</Table.Column>
     <Table.Column>Year</Table.Column>
-    <Table.Column>Option</Table.Column>
     <Table.Column></Table.Column>
+    <Table.Column>View Course Details</Table.Column>
+    <Table.Column>Delete Course</Table.Column>
   </Table.Header>
       <Table.Body>
         
         <Table.Row key="1">
+          <Table.Cell></Table.Cell>
           <Table.Cell></Table.Cell>
           <Table.Cell></Table.Cell>
           <Table.Cell></Table.Cell>
@@ -180,8 +223,13 @@ const myCustomTheme = createTheme({
               <Table.Cell>{item.desc}</Table.Cell>
               <Table.Cell>{item.nfq}</Table.Cell>
               <Table.Cell>{item.courseyear}</Table.Cell>
-              <Table.Cell>{item.id}</Table.Cell>
+              <Table.Cell></Table.Cell>
               <Table.Cell><Link href={`/viewAll?id=`+item.id}>View</Link></Table.Cell>
+              <Table.Cell>
+                <Button color='error' type='button' onClick={(save) => deleteCourse(item.id)}>
+                Delete Course
+                </Button>
+              </Table.Cell>
             </Table.Row>
 ))   
           }
@@ -189,21 +237,19 @@ const myCustomTheme = createTheme({
 
             <Table.Row key="1">
           <Table.Cell>*</Table.Cell>
-          <Table.Cell><Input id="title" clearable bordered initialValue="Title" /></Table.Cell>
-          <Table.Cell><Input id="desc" clearable bordered initialValue="description" /></Table.Cell>
-          <Table.Cell><Input id="nfq" clearable bordered initialValue="NFQ" /></Table.Cell>
-          <Table.Cell><Input id="courseyear" clearable bordered initialValue="Course Year" /></Table.Cell>
+          <Table.Cell><Input id="title" clearable bordered initialValue="" labelPlaceholder="Enter Title" /></Table.Cell>
+          <Table.Cell><Input id="desc" clearable bordered initialValue="" labelPlaceholder="Enter Description" /></Table.Cell>
+          <Table.Cell><Input id="nfq" clearable bordered initialValue="" labelPlaceholder="Enter NFQ" /></Table.Cell>
+          <Table.Cell><Input id="courseyear" clearable bordered initialValue="" labelPlaceholder="Enter Course Year" /></Table.Cell>
+          <Table.Cell></Table.Cell>
           <Table.Cell></Table.Cell>
           <Table.Cell> <form onSubmit={handleSubmit}>
             <Link href="/confirm">
-              <Button type="submit"  color="error" ghost>
+              <Button type="submit"  color="primary">
               ADD COURSE
               </Button>
               </Link></form></Table.Cell>
             </Table.Row>
-
-
-
 
       </Table.Body>
 </Table>

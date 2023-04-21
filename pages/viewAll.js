@@ -1,9 +1,12 @@
-import Link from 'next/link'
+import { Link } from "@nextui-org/react";
 import { Table } from '@nextui-org/react';
 import { useRouter } from 'next/router'
 import { Input } from "@nextui-org/react";
 import { Button, Grid } from "@nextui-org/react";
 import {NextUIProvider} from "@nextui-org/react"
+import { createTheme} from "@nextui-org/react"
+import { Image } from '@nextui-org/react';
+import { Container, Card, Row, Text, Col, Spacer } from "@nextui-org/react";
 
 export default function ViewAll({data, courseid}) {
 
@@ -78,11 +81,76 @@ export default function ViewAll({data, courseid}) {
     // the ID.
     const {cid} = router.query
 
+    /**************** CUSTOM THEME ********************/
+const myCustomTheme = createTheme({
+  type: "light", // it could be "light" or "dark"
+  theme: {
+    colors: {
+      // brand colors
+      primaryLight: '$33ACFF',
+      primaryLightHover: '$33ACFF',
+      primaryLightActive: '$33ACFF',
+      primaryLightContrast: '$33ACFF',
+      primary: '#33ACFF',
+      primaryBorder: '$33ACFF',
+      primaryBorderHover: '$33ACFF',
+      primarySolidHover: '$33ACFF',
+      primarySolidContrast: '$white',
+      primaryShadow: '$33ACFF',
+
+      gradient: 'linear-gradient(112deg, $blue100 -25%, $pink500 -10%, $purple500 80%)',
+      link: '#5E1DAD',
+
+      // you can also create your own color
+      myColor: '#ff4ecd'
+
+      // ...  more colors
+    },
+    space: {},
+    fonts: {}
+  }
+})
+
+/**************** END CUSTOM THEME ********************/
  // Sending back the main user interface.
   return (
-    <NextUIProvider>
-        View all page
+
+    <NextUIProvider theme={myCustomTheme}>
+        
         Current ID is: {courseid}
+{/*Logo to appear at the top in the center */}
+<Image
+        width={320}
+        height={180}
+        src="https://dynamic.brandcrowd.com/asset/logo/cb52f9e5-32ed-4f83-b20a-3aa171749462/logo-search-grid-1x?logoTemplateVersion=1&v=638095294425300000"
+        alt="Default Image"
+        objectFit="cover"
+        />
+
+{/* ########## Top card #######*/}
+
+<Card css={{ width: '100%', h: "$30", $$cardColor: '$colors$secondary' }}>
+    <Card.Body>
+        <Row justify="center" align="center" >    
+            <Text h1 size={30} color="white" css={{ mt: 0 }}>
+                COLLEGE MANAGEMENT SYSTEM
+            </Text>
+        </Row>
+            <Text gap={1} h3 color="$colors$primary" css={{ m: 0 }}>
+                <Row justify="center" align="center" >              
+                    Hello !
+                </Row>
+            </Text>
+    </Card.Body>
+</Card>
+
+{/* ########## End Top card #######*/}
+
+{/* ########## Middle card #######*/}
+
+<Card css={{ h: "500px", $$cardColor: '#FFFFFF' }}>
+            <Card.Body>
+
 
    
 
@@ -105,7 +173,7 @@ export default function ViewAll({data, courseid}) {
     <Table.Column>Lastname </Table.Column>
     <Table.Column>Email </Table.Column>
     <Table.Column>Address </Table.Column>
-    <Table.Column>Tel </Table.Column>
+    <Table.Column>Telephone </Table.Column>
     <Table.Column>Enrolled in </Table.Column>
   </Table.Header>
 
@@ -152,51 +220,51 @@ export default function ViewAll({data, courseid}) {
 
           <Table.Cell>*</Table.Cell>
           <Table.Cell>*</Table.Cell>
-          <Table.Cell><Input id="firstname" clearable bordered initialValue="firstname" /></Table.Cell>
-          <Table.Cell><Input id="lastname" clearable bordered initialValue="lastname" /></Table.Cell>
-          <Table.Cell><Input id="email" clearable bordered initialValue="email" /></Table.Cell>
-          <Table.Cell><Input id="address" clearable bordered initialValue="address" /></Table.Cell>
-          <Table.Cell><Input id="telephone" clearable bordered initialValue="telephone" /></Table.Cell>
+          <Table.Cell><Input id="firstname" clearable bordered initialValue="" labelPlaceholder="Firstname" /></Table.Cell>
+          <Table.Cell><Input id="lastname" clearable bordered initialValue="" labelPlaceholder="Lastname" /></Table.Cell>
+          <Table.Cell><Input id="email" clearable bordered initialValue="" labelPlaceholder="Email" /></Table.Cell>
+          <Table.Cell><Input id="address" clearable bordered initialValue="" labelPlaceholder="Address" /></Table.Cell>
+          <Table.Cell><Input id="telephone" clearable bordered initialValue="" labelPlaceholder="Telephone" /></Table.Cell>
           <Table.Cell> <form onSubmit={handleSubmit}>
             <Link href="/confirm">
-              <Button type="submit"  color="error" ghost>
+              <Button type="submit"  color="secondary" >
               ADD STUDENT
               </Button>
               </Link></form></Table.Cell>
-            </Table.Row>
 
+          </Table.Row>
 
   </Table.Body>
 </Table>
 
-
 {/** ########################## END TABLE ##############*/}
 
+</Card.Body>
+</Card>
+
+{/* ########## Bottom card #######*/}
+<Card css={{ width: '100%', h: "$24", $$cardColor: '$colors$secondary' }}>
+    <Card.Body>
+        <br></br>
+            <Text h6 size={14} color="white" css={{ mt: 0 }} align="center">
+            Designed by ___________________ © 2023
+            </Text>
+    </Card.Body>
+</Card>
+{/* ########## End Bottom card #######*/}
 
     </NextUIProvider>
   )
-
-
-
-
 
    /* ************************** SUBMIT HANDLER *************************/
    async function saveData(id, courseid) {
 
     let gradeValue = document.getElementById('grade_'+id).value;
    
-   
     alert(id + " " + gradeValue+" "+courseid);
-   
-
-   
 
     // if we want to get a parameter from the URL such as
     // the ID.
-
-
-
-
 
   // Get data from the form.
   const data = {
@@ -212,8 +280,6 @@ export default function ViewAll({data, courseid}) {
   // API endpoint where we send form data.
   const endpoint = '/api/saveGrade'
 
-
-
   // Form the request for sending data to the server.
   const options = {
     // The method is POST because we are sending data.
@@ -226,32 +292,12 @@ export default function ViewAll({data, courseid}) {
     body: JSONdata,
   }
 
- 
-
   // Send the form data to our forms API on Vercel and get a response.
   const response = await fetch(endpoint, options)
 
   // Get the response data from server as JSON.
   // If server returns the name submitted, that means the form works.
   //const result = await response.json()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
    
     alert('Saved!');
   }
