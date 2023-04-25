@@ -1,11 +1,10 @@
 import { NextUIProvider } from '@nextui-org/react';
-import {useRouter} from 'next/router'
-import { Input, useInput } from "@nextui-org/react";
-import { Container, Card, Row, Text, Col, Spacer } from "@nextui-org/react";
+import { useRouter } from 'next/router'
+import { Input } from "@nextui-org/react";
+import { Card, Row, Text, Spacer } from "@nextui-org/react";
 import { Button, Grid } from "@nextui-org/react";
-import { Link } from "@nextui-org/react";
-import { createTheme} from "@nextui-org/react"
 import { Image } from '@nextui-org/react';
+import { createTheme } from "@nextui-org/react"
 
 export default function Home({data}) {
   const router = useRouter()
@@ -13,7 +12,6 @@ export default function Home({data}) {
   // Handle the submit for the form
   async function handleSubmt(event) {
   
-    
        alert("The form was submitted");
        event.preventDefault();
 
@@ -54,11 +52,9 @@ export default function Home({data}) {
         // Get the response data from server as JSON.
         // If server returns the name submitted, that means the form works.
         const result = await response.json()
+
         alert(result);
 
-        
-        
-        
         // redirect based on the result
         router.push("/adminNav");
   }
@@ -92,7 +88,6 @@ const myCustomTheme = createTheme({
     fonts: {}
   }
 })
-
 /**************** END CUSTOM THEME ********************/
 
   const MockItem = ({ text }) => {
@@ -113,12 +108,12 @@ const myCustomTheme = createTheme({
 
 {/*Logo to appear at the top in the center */}
 <Image
-        width={320}
-        height={180}
-        src="https://dynamic.brandcrowd.com/asset/logo/cb52f9e5-32ed-4f83-b20a-3aa171749462/logo-search-grid-1x?logoTemplateVersion=1&v=638095294425300000"
-        alt="Default Image"
-        objectFit="cover"
-        />
+  width={320}
+  height={180}
+  src="https://dynamic.brandcrowd.com/asset/logo/cb52f9e5-32ed-4f83-b20a-3aa171749462/logo-search-grid-1x?logoTemplateVersion=1&v=638095294425300000"
+  alt="Default Image"
+  objectFit="cover"
+/>
 
 {/* ########## Top card #######*/}
 
@@ -138,9 +133,9 @@ const myCustomTheme = createTheme({
     <Grid.Container gap={2} justify="center">
       <Grid xs={4}>
       </Grid>
-      <Grid xs={4}>
 
 {/* ########## Middle card #######*/}
+<Grid xs={4}>
       <Card css={{ h: "$240", $$cardColor: '$colors$primary' }}>
         <Card.Body>
           <Text h1 size={30} color="white" css={{ mt: 0 }} align="center">

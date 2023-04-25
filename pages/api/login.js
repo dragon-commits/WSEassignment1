@@ -1,4 +1,7 @@
-export default async function handler(req, res) {
+import { withIronSessionApiRoute } from "iron-session/next";
+
+export default withIronSessionApiRoute(
+  async function handler(req, res) {
 
   console.log("login api page called...");
  
@@ -12,6 +15,8 @@ export default async function handler(req, res) {
   console.log("username is: "+ username);
   console.log("password  is: "+ pass);
 
+  await req.session.save();
+  
       // get the client
 const mysql = require('mysql2');
 
@@ -45,4 +50,13 @@ connection.query(
    
   }
 );
-}
+},
+{
+  cookieName: "myapp_cookiename",
+  password: "complex_password_at_least_32_characters_long",
+  // secure: true should be used in production (HTTPS) but can't be used in development (HTTP)
+  cookieOptions: {
+    secure: process.env.NODE_ENV === "production",
+  },
+},
+);

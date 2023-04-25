@@ -181,7 +181,11 @@ const myCustomTheme = createTheme({
 
 <Card css={{ h: "500px", $$cardColor: '#FFFFFF' }}>
             <Card.Body>
-
+            <Row justify="center" align="center" >    
+            <Text h2 size={30} color="$colors$secondary" css={{ mt: 0 }}>
+                COURSE MANAGEMENT
+            </Text>
+        </Row>
 
 {/* ########## BEGIN TABLE #######*/}
 <Table
@@ -198,8 +202,8 @@ const myCustomTheme = createTheme({
     <Table.Column>View Course Details</Table.Column>
     <Table.Column>Delete Course</Table.Column>
   </Table.Header>
+
       <Table.Body>
-        
         <Table.Row key="1">
           <Table.Cell></Table.Cell>
           <Table.Cell></Table.Cell>
@@ -281,10 +285,9 @@ export const getServerSideProps = withIronSessionSsr(
 
   const res = await  fetch('http://localhost:3000/api/listCourses') 
   const coursesdata = await res.json()
-  console.log("order output");
+  console.log("listCourses output");
   var courses = coursesdata;
   console.log(courses);
-
 
   console.log("getting data from session..");
   console.log(req.session.username.username);

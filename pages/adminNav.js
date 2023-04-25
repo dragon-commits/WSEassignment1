@@ -1,7 +1,6 @@
 import { NextUIProvider } from '@nextui-org/react';
 import {useRouter} from 'next/router'
-import { Input, useInput } from "@nextui-org/react";
-import { Container, Card, Row, Text, Col, Spacer } from "@nextui-org/react";
+import { Card, Row, Text, Spacer } from "@nextui-org/react";
 import { Button, Grid } from "@nextui-org/react";
 import { Link } from "@nextui-org/react";
 import { createTheme} from "@nextui-org/react"
@@ -39,7 +38,6 @@ const myCustomTheme = createTheme({
     fonts: {}
   }
 })
-
 /**************** END CUSTOM THEME ********************/
 
   const router = useRouter()
@@ -56,18 +54,18 @@ const myCustomTheme = createTheme({
     );
   };
   
-  return (
+return (
 
 <NextUIProvider theme={myCustomTheme}>
 
 {/*Logo to appear at the top in the center */}
 <Image
-        width={320}
-        height={180}
-        src="https://dynamic.brandcrowd.com/asset/logo/cb52f9e5-32ed-4f83-b20a-3aa171749462/logo-search-grid-1x?logoTemplateVersion=1&v=638095294425300000"
-        alt="Default Image"
-        objectFit="cover"
-        />
+  width={320}
+  height={180}
+  src="https://dynamic.brandcrowd.com/asset/logo/cb52f9e5-32ed-4f83-b20a-3aa171749462/logo-search-grid-1x?logoTemplateVersion=1&v=638095294425300000"
+  alt="Default Image"
+  objectFit="cover"
+/>
 
 {/* ########## Top card #######*/}
 
@@ -96,11 +94,11 @@ const myCustomTheme = createTheme({
             <Card.Body>
             <br></br>
             <Text h2 color="white" css={{ mt: 0 }} align="center">
-            View and Add Courses
+            Manage Courses and Grades
             </Text>
             <Row justify="center" align="center">
               <Link href="/listAllCourses">
-                <Button color="secondary" size="xl">COURSES</Button>
+                <Button color="secondary" size="xl">VIEW COURSES</Button>
               </Link>
               </Row>
             </Card.Body>
@@ -111,9 +109,13 @@ const myCustomTheme = createTheme({
     <Grid xs={4}>
     <Card css={{ $$cardColor: '$colors$primary' }}>
             <Card.Body>
+            <br></br>
+            <Text h2 color="white" css={{ mt: 0 }} align="center">
+            Manage Students
+            </Text>
             <Row justify="center" align="center">
-              <Link href="/viewAll">
-                <Button color="secondary" size="xl">STUDENTS</Button>
+              <Link href="/listAllStudents">
+                <Button color="secondary" size="xl">VIEW STUDENTS</Button>
               </Link>
               </Row>
             </Card.Body>
@@ -121,9 +123,13 @@ const myCustomTheme = createTheme({
     </Grid>
 
 {/* ########## Right card #######*/}
-    <Grid xs={4}>
+<Grid xs={4}>
     <Card css={{ $$cardColor: '$colors$primary' }}>
             <Card.Body>
+            <br></br>
+            <Text h2 color="white" css={{ mt: 0 }} align="center">
+            Enter System Chat
+            </Text>
             <Row justify="center" align="center">
               <Link href="/chat">
                 <Button color="secondary" size="xl">CHAT</Button>
@@ -131,12 +137,12 @@ const myCustomTheme = createTheme({
               </Row>
             </Card.Body>
           </Card>
-    </Grid>
+          </Grid>
 
 </Grid.Container>
     <Spacer y={0.5}/>
 
-{/* ########## Bottom card #######*/}
+{/* ########## Bottom card 2 #######*/}
 <Card css={{ width: '100%', h: "$24", $$cardColor: '$colors$secondary' }}>
     <Card.Body>
         <br></br>
@@ -145,10 +151,9 @@ const myCustomTheme = createTheme({
             </Text>
     </Card.Body>
 </Card>
-{/* ########## End Bottom card #######*/}
+{/* ########## End Bottom card 2 #######*/}
 
     </NextUIProvider>
-    
   )
 }
 

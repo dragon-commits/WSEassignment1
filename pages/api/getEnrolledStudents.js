@@ -1,7 +1,7 @@
 export default function getEnrolledStudents(req, res) {
   
 // get the ID for the query
-console.log("get enrolled page ID for query " + req.query.id);
+console.log("getEnrolledStudents page ID for query " + req.query.id);
 let currentID = req.query.id;
 
     // get the client
@@ -18,9 +18,8 @@ database: 'wse'
 
 // simple query
 connection.query(
-"SELECT * FROM students where enrolledin = '"+currentID+"';",
+"SELECT * FROM wse.students WHERE enrolledin = '"+currentID+"';",
 function(err, results, fields) {
-
 
     console.log("send back the results");
     console.log(results);
