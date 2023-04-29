@@ -1,6 +1,6 @@
 import { Table } from '@nextui-org/react';
 import { useRouter } from 'next/router'
-import { Button, Grid } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 import {NextUIProvider} from "@nextui-org/react"
 import { createTheme} from "@nextui-org/react"
 import { Image } from '@nextui-org/react';

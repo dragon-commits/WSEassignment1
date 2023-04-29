@@ -17,10 +17,39 @@ export default function Home({data}) {
 
        // grab the variables from the form.
        const username = document.querySelector('#username').value
-       const pass = document.querySelector('#password').value
 
        console.log("username is " + username);
+
+      if(!username){
+          alert("Sorry no username entered!")
+          return false;
+      }
+      if(username.length <4){
+          alert("Username is too short!")
+          return false;
+      }
+      if(username.includes(";")){
+        alert("sorry SQL in that username");
+        return false;
+      }
+      if(username.includes("null")){
+        alert("sorry username can not be null");
+        return false;
+      }
+
+       // grab the variables from the form.
+       const pass = document.querySelector('#password').value
+
        console.log("password is " + pass);
+
+      if(!pass){
+        alert("Sorry no password entered!")
+        return false;
+      }
+      if(pass.length <4){
+        alert("Password is too short!")
+        return false;
+      }
 
         // Get data from the form.
         const data = {
@@ -53,10 +82,15 @@ export default function Home({data}) {
         // If server returns the name submitted, that means the form works.
         const result = await response.json()
 
-        alert(result);
+        alert(`server result: ${result}`);
 
+        if(result.includes("ok")){
         // redirect based on the result
         router.push("/adminNav");
+        }
+        else{
+          alert(`Your username and password is not recognised. Please try again`);
+        }
   }
 
 /**************** CUSTOM THEME ********************/
@@ -145,6 +179,8 @@ const myCustomTheme = createTheme({
 
             <form onSubmit={handleSubmt}>
             <Input id="username"
+             minLength="2" 
+             maxLength="30"
              shadow={false} 
              status="secondary" 
              clearable 
@@ -155,6 +191,8 @@ const myCustomTheme = createTheme({
             <Spacer y={2}/>
 
             <Input.Password id="password"
+             minLength="2" 
+             maxLength="30"
              shadow={false} 
              status="secondary"
              type="password" 

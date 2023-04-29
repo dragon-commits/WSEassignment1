@@ -1,6 +1,6 @@
 export default function listAllStudentsQuery(req, res) {
   
-    // get the client
+// get the client
 const mysql = require('mysql2');
 
 // create the connection to database

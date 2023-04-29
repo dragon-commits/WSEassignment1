@@ -10,7 +10,6 @@ import { Card, Row, Text } from "@nextui-org/react";
 
 export default function ViewAll({data, courseid}) {
 
-
     // if we want to redirect the user
     const router = useRouter()
 

@@ -9,7 +9,6 @@ import { Image } from '@nextui-org/react';
 import { withIronSessionSsr } from "iron-session/next";
 import { Table } from '@nextui-org/react';
 
-
 export default function listAllCourses({data, courses}) {
 
   const router = useRouter()
@@ -272,8 +271,6 @@ const myCustomTheme = createTheme({
     </Card.Body>
 </Card>
 {/* ########## End Bottom card #######*/}
-
-
    
     </NextUIProvider>
 

@@ -1,5 +1,3 @@
-
-
 //
 // This is just a random function we are calling
 // the important part is that it needs to return something
@@ -11,17 +9,21 @@
 // something such as the api pages that return database content
 // or something we can validate against.
 //
+
 function add(first, second){
 
   return 3;
 
-
 }
 
-
-
-QUnit.module('add');
+QUnit.module('exampleTest');
 
 QUnit.test('adding two numbers together', assert => {
     assert.equal(add(1, 2), 3);
   });
+
+  const timeout = QUnit.config.testTimeout;
+  QUnit.config.testTimeout = 40000;
+  setTimeout(() => {
+    QUnit.config.testTimeout = timeout;
+  }, 10);

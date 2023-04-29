@@ -153,28 +153,23 @@ return (
 </Grid>
 
 <Grid xs={4}>
-<Card css={{ h: "450px", $$cardColor: '#FFFFFF'}}>
+<Card css={{ h: "$240", $$cardColor: '#FFFFFF'}}>
   <Card.Body>
-    <Text gap={1} h2 color="$colors$secondary" css={{ m: 0 }} align = 'center'>             
+    <Text h2 color="$colors$secondary" css={{ m: 0 }} align = 'center'>             
       Add Message
-    </Text>
-    <Spacer y={0.5}/>
+    <Spacer y={2}/>
 
-    <Text css={{ m: 0 }} align='center'>
     <form onSubmit={handleSubmt}>
-      Username: 
-      <Spacer y={0.5}/>
-      <Input readOnly id="username" bordered labelPlaceholder="" width="300px" initialValue={(data)}/>
+      <Input readOnly id="username" bordered label="Username:" width="300px" initialValue={(data)}/>
       <Spacer y={1.6}/>
 
-      Your Message: 
-      <Spacer y={0.5}/>
-      <Input id="comment" clearable bordered labelPlaceholder="" lenght="300px" width="300px" initialValue='' />
+      <Input id="comment" clearable bordered label="Your Message:" width="300px" initialValue='' />
       <Spacer y={1.6}/>
 
         <Row justify="center" align="center">
       <Button type="submit" size="xl" width="300px" color="primary" >Send</Button>
       </Row>
+      <Spacer y={1.6}/>
     </form>
 </Text>
   </Card.Body>
